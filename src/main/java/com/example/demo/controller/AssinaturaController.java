@@ -40,6 +40,7 @@ public class AssinaturaController {
     @PostMapping("/assinaturas")
     public ResponseEntity<?> criarAssinatura(@Valid @RequestBody CriarAssinaturaRequest request,
                                              Authentication authentication) {
+        System.out.println("Endpoint: criar assinatura");
         String email = authentication.getName();
         User usuario = usuarioRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
@@ -76,6 +77,7 @@ public class AssinaturaController {
     @Operation(summary = "Retorna o plano ativo do usuário logado")
     @GetMapping("/me/plano")
     public ResponseEntity<?> planoAtivo(Authentication authentication) {
+        System.out.println("Endpoint: plano ativo");
         String email = authentication.getName();
         User usuario = usuarioRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
