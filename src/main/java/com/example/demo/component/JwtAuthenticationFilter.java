@@ -68,6 +68,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             }
         }
 
+        System.out.println("Authorized request: " + request.getRequestURI());
+
         filterChain.doFilter(request, response);
     }
 }
