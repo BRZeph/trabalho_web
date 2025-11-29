@@ -43,6 +43,7 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
+                                "/**", // TODO: Eduardo, tirar isso para fazer autenticação jwt.
                                 "/login",
                                 "/register",
                                 "/me",

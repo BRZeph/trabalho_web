@@ -30,8 +30,7 @@ class PlanoControllerTest {
     void listarDeveRetornarListaDePlanosMapeadosParaResponse() {
         // arrange
         Plano plano = new Plano();
-        // se sua entidade tiver setId, pode usar; senão, ignore o id nos asserts
-        // plano.setId(1L);
+        plano.setId(1L);
         plano.setNome("Plano Básico");
         plano.setPrecoMensal(new BigDecimal("19.90"));
         plano.setAtivo(true);
@@ -40,7 +39,7 @@ class PlanoControllerTest {
         when(planoRepository.findAll()).thenReturn(List.of(plano));
 
         // act
-        List<PlanoResponse> resposta = planoController.listar();
+        List<PlanoResponse> resposta = planoController.listar().getBody();
 
         // assert
         assertEquals(1, resposta.size());
@@ -54,7 +53,6 @@ class PlanoControllerTest {
 
     @Test
     void criarDeveSalvarEDevolverPlanoResponseComPrecoZeroQuandoNulo() {
-        // arrange: request vindo da API (usa o mesmo DTO para request/response)
         PlanoResponse request = new PlanoResponse(
                 null,
                 "Plano Premium",
